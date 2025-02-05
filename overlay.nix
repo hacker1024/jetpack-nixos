@@ -99,7 +99,7 @@ in
     tests = prev.callPackages ./pkgs/tests { inherit l4tVersion; };
 
     kernelPackagesOverlay = final: prev: {
-      nvidia-display-driver = self.callPackage ./kernel/display-driver.nix { };
+      nvidia-display-driver = final.callPackage (self.callPackage ./kernel/display-driver.nix { }).override { };
     };
 
     kernel = self.callPackage ./kernel { kernelPatches = [ ]; };
